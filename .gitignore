@@ -7,6 +7,7 @@ recipe-book-frontend/.pnp
 
 # testing
 recipe-book-frontend/coverage
+exploration
 
 # production
 recipe-book-frontend/build
@@ -22,8 +23,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 recipe-book-frontend/node_modules/.yarn-integrity
-exploration
-
 
 ## END JS INGORE
 ## START RAILS IGNORE
