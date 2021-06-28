@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def destroy
     if is_own_user?
       @user.destroy
-      render json: {message: 'user has been removed'}, status: :no_content
+      render json: {message: 'user has been removed'}
     else
       render json: {message: 'not authorized to modify this user'}, status: :unauthorized
     end
