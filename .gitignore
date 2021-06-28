@@ -1,0 +1,51 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+recipe-book-frontend/node_modules
+recipe-book-frontend/.pnp
+.pnp.js
+
+# testing
+recipe-book-frontend/coverage
+
+# production
+recipe-book-frontend/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+recipe-book-frontend/node_modules/.yarn-integrity
+exploration
+
+
+## END JS INGORE
+## START RAILS IGNORE
+
+# Ignore bundler config.
+recipe-book-api/.bundle
+
+# Ignore all logfiles and tempfiles.
+recipe-book-api/log/*
+recipe-book-api/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+recipe-book-api/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+recipe-book-api/storage/*
+!/storage/.keep
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+recipe-book-api/config/master.key
