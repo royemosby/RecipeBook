@@ -1,8 +1,9 @@
 import { url } from './adapterConfig'
 import { store } from '../index'
+import { batch } from 'react-redux'
 
 const createUser = () => {
-  const currentUser = store.getState().currentUser
+  const user = store.getState().user
   const config = {
     method: 'POST',
     headers: {
@@ -10,13 +11,13 @@ const createUser = () => {
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      username: currentUser.username,
-      password: currentUser.password,
+      username: user.username,
+      password: user.password,
+      email: user.email,
     }),
   }
   return (dispatch) => {
     dispatch({ type: 'SEND_CREATE_USER' })
-
     fetch(`${url.users}`, config)
       .then((resp) => resp.json())
       .then((response) => {
@@ -40,4 +41,45 @@ const createUser = () => {
   }
 }
 
-export { createUser }
+const authenticate = () => {
+  const user = store.getState().user
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      username: user.username,
+      password: user.password,
+      email: user.email,
+    }),
+  }
+  return (dispatch) => {
+    dispatch({ type: 'SEND_CREATE_USER' })
+    fetch(`${url.login}`, config)
+      .then((resp) => resp.json())
+      .then((response) => {
+        if (response.message) {
+          let message = ''
+          if (typeof response.message === 'string') {
+            message = response.message
+          } else {
+            for (const field in response.message) {
+              message = message.concat(
+                // prettier-ignore
+                `${field.toUpperCase()}: ${response.message[field].join(' | ')}. `
+              )
+            }
+          }
+          dispatch({ type: 'AUTH_ERROR', message })
+        } else {
+          //pull out recipes
+          //batch
+          dispatch({ type: 'LOGIN_USER', response })
+        }
+      })
+  }
+}
+
+export { createUser, authenticate }
