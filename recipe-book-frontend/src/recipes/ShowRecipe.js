@@ -6,7 +6,7 @@ class ShowRecipe extends Component {
     return (
       <div>
         <h1>ShowRecipe</h1>
-        {/* {<NoMatch/>} */}
+        {<NoMatch />}
       </div>
     )
   }
