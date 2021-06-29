@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const Header = (props) => {
   return (
@@ -27,7 +28,11 @@ const Header = (props) => {
           activeStyle={{ background: 'lightblue' }}>
           Profile
         </NavLink>
-        <NavLink to="/" className="linky" exact>
+        <NavLink
+          to="/"
+          className="linky"
+          exact
+          onClick={props.toggleLoginModal}>
           Login
         </NavLink>
         <NavLink
@@ -45,4 +50,10 @@ const Header = (props) => {
   )
 }
 
-export default Header
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleLoginModal: () => dispatch({ type: 'TOGGLE_LOGIN_MODAL' }),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Header)
