@@ -12,7 +12,7 @@ class NewUser extends Component {
     return (
       <div className="skeleton">
         <h1>NewUser</h1>
-        <UserForm submit={this.submit} handleCancel={this.handleCancel} />
+        <UserForm submit={this.submit} cancel={this.props.cancel} />
       </div>
     )
   }
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     addCredentials: (credentials) =>
       dispatch({ type: 'ADD_CREDENTIALS', credentials }),
     createUser: () => dispatch(createUser()),
+    cancel: () => dispatch({ type: 'CANCEL_AUTH' }),
   }
 }
 
