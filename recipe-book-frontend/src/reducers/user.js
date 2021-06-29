@@ -38,7 +38,6 @@ function user(state = initialState, action) {
       }
     case 'NEW_USER_ERROR':
     case 'AUTH_ERROR':
-      console.dir(action)
       return {
         ...state,
         password: '',
@@ -46,7 +45,6 @@ function user(state = initialState, action) {
       }
     case 'ADD_USER':
     case 'LOGIN_USER':
-      console.dir(action)
       return {
         ...state,
         requesting: false,
