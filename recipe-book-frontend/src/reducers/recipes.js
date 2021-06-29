@@ -1,5 +1,5 @@
 function recipes(state = [], action) {
-    return state
+  return state
 }
 
 export { recipes }
