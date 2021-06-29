@@ -41,6 +41,7 @@ function user(state = initialState, action) {
       console.dir(action)
       return {
         ...state,
+        password: '',
         requesting: false,
       }
     case 'ADD_USER':
