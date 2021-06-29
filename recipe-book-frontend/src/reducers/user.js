@@ -49,6 +49,12 @@ function user(state = initialState, action) {
       return {
         ...initialState,
       }
+    case 'CANCEL_AUTH':
+      console.log('cancel auth')
+      console.dir(state)
+      return {
+        ...initialState,
+      }
     default:
       return state
   }
