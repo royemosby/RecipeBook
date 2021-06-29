@@ -1,9 +1,29 @@
 import React, { Component } from 'react'
+import UserForm from './components/UserForm'
+import { connect } from 'react-redux'
+import { createUser } from '../adapters/user'
 
 class NewUser extends Component {
+  submit = (credentials) => {
+    console.dir(credentials)
+    //this.props.addCredentials(credentials)
+  }
   render() {
-    return <h1>NewUser</h1>
+    return (
+      <div className="skeleton">
+        <h1>NewUser</h1>
+        <UserForm submit={this.submit} handleCancel={this.handleCancel} />
+      </div>
+    )
   }
 }
 
-export default NewUser
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCredentials: (credentials) =>
+      dispatch({ type: 'ADD_CREDENTIALS', credentials }),
+    createUser: () => dispatch(createUser()),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewUser)
