@@ -51,6 +51,10 @@ html {
   background-color: rgb(255, 235, 145)
 }
 
+.delete {
+  background-color: #f3b3b3;
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -79,4 +83,12 @@ nav {
 
 .main-overflow {
   overflow-y: auto;
+}
+
+.left-aligned {
+  text-align: left;
+}
+
+.newline-wrap {
+  white-space: pre-wrap;
 }
