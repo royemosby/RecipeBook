@@ -56,7 +56,7 @@ const authenticate = () => {
     }),
   }
   return (dispatch) => {
-    dispatch({ type: 'SEND_CREATE_USER' })
+    dispatch({ type: 'SEND_CREDENTIALS' })
     fetch(`${url.login}`, config)
       .then((resp) => resp.json())
       .then((response) => {
@@ -74,8 +74,8 @@ const authenticate = () => {
           }
           dispatch({ type: 'AUTH_ERROR', message })
         } else {
-          //pull out recipes
-          //batch
+          const recipes = response.user.recipes
+          dispatch({ type: 'ADD_RECIPES', recipes })
           dispatch({ type: 'LOGIN_USER', response })
         }
       })
