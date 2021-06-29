@@ -5,8 +5,8 @@ import { createUser } from '../adapters/user'
 
 class NewUser extends Component {
   submit = (credentials) => {
-    console.dir(credentials)
-    //this.props.addCredentials(credentials)
+    this.props.addCredentials(credentials)
+    this.props.createUser()
   }
   render() {
     return (
