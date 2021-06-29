@@ -11,6 +11,7 @@ const Header = (props) => {
           to="/"
           className="linky"
           exact
+          onClick={props.closeLoginModal}
           activeStyle={{ background: 'lightblue' }}>
           Main
         </NavLink>
@@ -28,11 +29,7 @@ const Header = (props) => {
           activeStyle={{ background: 'lightblue' }}>
           Profile
         </NavLink>
-        <NavLink
-          to="/"
-          className="linky"
-          exact
-          onClick={props.toggleLoginModal}>
+        <NavLink to="/" className="linky" exact onClick={props.openLoginModal}>
           Login
         </NavLink>
         <NavLink
@@ -42,7 +39,11 @@ const Header = (props) => {
           activeStyle={{ background: 'lightblue' }}>
           Register
         </NavLink>
-        <NavLink to="/" className={['linky', 'logout'].join(' ')} exact>
+        <NavLink
+          to="/"
+          className={['linky', 'logout'].join(' ')}
+          exact
+          onClick={props.logout}>
           Logout
         </NavLink>
       </nav>
@@ -52,7 +53,9 @@ const Header = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleLoginModal: () => dispatch({ type: 'TOGGLE_LOGIN_MODAL' }),
+    openLoginModal: () => dispatch({ type: 'OPEN_LOGIN_MODAL' }),
+    closeLoginModal: () => dispatch({ type: 'CLOSE_LOGIN_MODAL' }),
+    logout: () => dispatch({ type: 'LOG_OUT' }),
   }
 }
 
