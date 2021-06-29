@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './common/Header'
 import MainContainer from './main/MainContainer'
 import ShowUser from './user/ShowUser'
-import EditUser from './user/EditUser'
 import NewUser from './user/NewUser'
 import IndexRecipes from './recipes/IndexRecipes'
 import ShowRecipe from './recipes/ShowRecipe'
@@ -20,7 +19,6 @@ function App() {
           <Switch>
             <Route exact path="/" component={MainContainer} />
             <Route exact path="/user" component={ShowUser} />
-            <Route exact path="/user/edit" component={EditUser} />
             <Route exact path="/user/new" component={NewUser} />
             <Route exact path="/recipes" component={IndexRecipes} />
             <Route exact path="/recipes/new" component={NewRecipe} />
