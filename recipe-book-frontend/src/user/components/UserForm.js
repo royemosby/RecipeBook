@@ -18,6 +18,15 @@ class UserForm extends Component {
     this.props.submit(this.state)
   }
 
+  handleCancel = (evt) => {
+    this.props.cancel()
+    this.setState({
+      username: '',
+      password: '',
+      email: '',
+    })
+  }
+
   render() {
     return (
       <div className="prez">
@@ -52,7 +61,7 @@ class UserForm extends Component {
           </div>
           <div>
             <input type="submit" value="Register with RecipeBook" />
-            <button type="button" onClick={this.props.handleCancel}>
+            <button type="button" onClick={this.handleCancel}>
               Cancel
             </button>
           </div>
