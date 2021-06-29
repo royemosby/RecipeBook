@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Header = (props) => {
+  console.dir(props)
   return (
     <div className="prez">
-      <h1>Header</h1>
       <nav>
         <NavLink
           to="/"
@@ -15,39 +15,65 @@ const Header = (props) => {
           activeStyle={{ background: 'lightblue' }}>
           Main
         </NavLink>
-        <NavLink
-          to="/recipes/new"
-          className="linky"
-          exact
-          activeStyle={{ background: 'lightblue' }}>
-          New Recipe
-        </NavLink>
-        <NavLink
-          to="/user"
-          className="linky"
-          exact
-          activeStyle={{ background: 'lightblue' }}>
-          Profile
-        </NavLink>
-        <NavLink to="/" className="linky" exact onClick={props.openLoginModal}>
-          Login
-        </NavLink>
-        <NavLink
-          to="/user/new"
-          className="linky"
-          exact
-          activeStyle={{ background: 'lightblue' }}>
-          Register
-        </NavLink>
-        <NavLink
-          to="/"
-          className={['linky', 'logout'].join(' ')}
-          exact
-          onClick={props.logout}>
-          Logout
-        </NavLink>
+        {props.isLoggedIn ? showNewRecipe(props) : <></>}
+        {props.isLoggedIn ? showProfile(props) : <></>}
+        {!props.isLoggedIn ? showAuthNewUser(props) : <></>}
+        {props.isLoggedIn ? showLogOut(props) : <></>}
       </nav>
     </div>
+  )
+}
+
+const showNewRecipe = (props) => {
+  return (
+    <NavLink
+      to="/recipes/new"
+      className="linky"
+      exact
+      activeStyle={{ background: 'lightblue' }}>
+      New Recipe
+    </NavLink>
+  )
+}
+
+const showProfile = (props) => {
+  return (
+    <NavLink
+      to="/user"
+      className="linky"
+      exact
+      activeStyle={{ background: 'lightblue' }}>
+      Profile
+    </NavLink>
+  )
+}
+
+const showAuthNewUser = (props) => {
+  return (
+    <>
+      <NavLink to="/" className="linky" exact onClick={props.openLoginModal}>
+        Login
+      </NavLink>
+      <NavLink
+        to="/user/new"
+        className="linky"
+        exact
+        activeStyle={{ background: 'lightblue' }}>
+        Register
+      </NavLink>
+    </>
+  )
+}
+
+const showLogOut = (props) => {
+  return (
+    <NavLink
+      to="/"
+      className={['linky', 'logout'].join(' ')}
+      exact
+      onClick={props.logout}>
+      Logout
+    </NavLink>
   )
 }
 
@@ -59,4 +85,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Header)
+const mapStateToProps = (state) => {
+  return { isLoggedIn: state.user.isLoggedIn }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
