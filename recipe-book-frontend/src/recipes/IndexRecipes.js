@@ -1,11 +1,9 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
-class IndexRecipes extends Component{
-  render(){
-    return(
-      <h1>IndexRecipes</h1>
-    )
-  }
+class IndexRecipes extends Component {
+    render() {
+        return <h1>IndexRecipes</h1>
+    }
 }
 
 export default IndexRecipes

@@ -1,12 +1,12 @@
 const initialState = {
-  id: "",
-  username: "",
-  email: "",
-  token: ""
+    id: '',
+    username: '',
+    email: '',
+    token: '',
 }
 
-function user(state = initialState, action){
-  return state
+function user(state = initialState, action) {
+    return state
 }
 
-export {user}
+export { user }

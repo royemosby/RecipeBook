@@ -1,5 +1,5 @@
-function recipes(state = [], action){
-  return state;
+function recipes(state = [], action) {
+    return state
 }
 
-export {recipes}
+export { recipes }
