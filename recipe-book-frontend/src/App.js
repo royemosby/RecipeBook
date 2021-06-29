@@ -29,12 +29,12 @@ function App() {
               <Redirect to="/" />
             </Route>
             <Route exact path="/recipes/new" component={NewRecipe} />
-            <Route path="/recipes/:recipeId" component={ShowRecipe} />
             <Route
               exact
               path="/recipes/:recipeId/edit"
               component={EditRecipe}
             />
+            <Route path="/recipes/:recipeId" component={ShowRecipe} />
             <Route path="*">
               <NoMatch />
             </Route>
