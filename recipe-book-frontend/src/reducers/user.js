@@ -19,31 +19,41 @@ function user(state = initialState, action) {
         password: action.credentials.password,
         email: action.credentials.email,
       }
-    case 'TOGGLE_LOGIN_MODAL':
+    case 'OPEN_LOGIN_MODAL':
       return {
         ...state,
-        isAuthModalOpen: !state.isAuthModalOpen,
+        isAuthModalOpen: true,
+      }
+    case 'CLOSE_LOGIN_MODAL':
+      return {
+        ...state,
+        isAuthModalOpen: false,
       }
     case 'SEND_CREATE_USER':
+    case 'SEND_CREDENTIALS':
       return {
         ...state,
         requesting: true,
         password: '',
       }
     case 'NEW_USER_ERROR':
+    case 'AUTH_ERROR':
       console.dir(action)
       return {
         ...state,
         requesting: false,
       }
     case 'ADD_USER':
+    case 'LOGIN_USER':
       console.dir(action)
       return {
         ...state,
         requesting: false,
-        token: action.response.jwt,
+        username: action.response.user.username,
         id: action.response.user.id,
+        token: action.response.jwt,
         isLoggedIn: true,
+        isAuthModalOpen: false,
       }
     case 'LOG_OUT':
       return {
