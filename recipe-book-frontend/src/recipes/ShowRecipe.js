@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { deleteRecipe } from '../adapters/recipes'
 
 class ShowRecipe extends Component {
   handleDelete = () => {
-    alert('fake d3l3t0rz')
+    this.props.updateLocalRecipe(this.props.recipe)
+    this.props.deleteRecipe()
+    this.props.history.push('/')
   }
   render() {
     return (
@@ -41,4 +44,16 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(ShowRecipe)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateLocalRecipe: (recipe) => {
+      dispatch({ type: 'CREATE_HOLDER_RECIPE', recipe })
+    },
+    deleteRecipe: () => dispatch(deleteRecipe()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ShowRecipe))
