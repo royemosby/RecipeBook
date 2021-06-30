@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 class RecipeForm extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault()
+    this.props.handleSubmit(this.state)
+    console.dir(this.state)
   }
 
   state = {
@@ -12,6 +14,7 @@ class RecipeForm extends Component {
     description: '',
     ingredients: '',
     instructions: '',
+    id: '',
   }
 
   componentDidMount() {
@@ -22,6 +25,7 @@ class RecipeForm extends Component {
         description: this.props.recipe.description,
         ingredients: this.props.recipe.ingredients,
         instructions: this.props.recipe.instructions,
+        id: this.props.recipe.id,
       })
     }
   }
@@ -50,7 +54,7 @@ class RecipeForm extends Component {
             <label htmlFor="servings">Servings: </label>
             <input
               type="number"
-              name="name"
+              name="servings"
               min="1"
               value={this.state.servings}
               onChange={this.handleChange}
