@@ -62,6 +62,30 @@ function user(state = initialState, action) {
       return {
         ...initialState,
       }
+    case 'SEND_CREATE_RECIPE':
+    case 'SEND_UPDATE_RECIPE':
+      return {
+        ...state,
+        requesting: true,
+      }
+    case 'CREATE_RECIPE':
+    case 'UPDATE_RECIPE':
+      return {
+        ...state,
+        requesting: false,
+      }
+    case 'CREATE_RECIPE_ERROR':
+    case 'UPDATE_RECIPE_ERROR':
+      return {
+        ...state,
+        message: action.response.message,
+        requesting: false,
+      }
+    case 'DISMISS_ERROR':
+      return {
+        ...state,
+        message: '',
+      }
     default:
       return state
   }
