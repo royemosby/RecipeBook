@@ -42,7 +42,8 @@ class RecipesController < ApplicationController
   end
 
   def recipe_belongs_to_user?
-    @recipe = Recipe.find_by(id: params[:id])
+    @recipe = Recipe.find_by(id: params[:recipe][:id])
+    #byebug
     @recipe && @recipe.user == current_user
   end
 
