@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class RecipeForm extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault()
     this.props.handleSubmit(this.state)
-    console.dir(this.state)
+    this.props.history.push('/')
   }
 
   state = {
@@ -101,4 +101,4 @@ class RecipeForm extends Component {
   }
 }
 
-export default RecipeForm
+export default withRouter(RecipeForm)
