@@ -51,6 +51,7 @@ function ui(state = initialState, action) {
       }
     case 'SEND_CREATE_RECIPE':
     case 'SEND_UPDATE_RECIPE':
+    case 'SEND_DELETE_RECIPE':
       return {
         ...state,
         requesting: true,
@@ -61,6 +62,12 @@ function ui(state = initialState, action) {
         ...state,
         requesting: false,
       }
+    case 'RECIPE_DELETED':
+      return {
+        ...state,
+        message: action.message,
+        requesting: false,
+      }
     case 'CREATE_RECIPE_ERROR':
     case 'UPDATE_RECIPE_ERROR':
       return {
@@ -68,6 +75,7 @@ function ui(state = initialState, action) {
         message: action.response.message,
         requesting: false,
       }
+
     case 'DISMISS_ERROR':
       return {
         ...state,
