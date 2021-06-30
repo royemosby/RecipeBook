@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import RecipeForm from './components/RecipeForm'
+import { updateRecipe } from '../adapters/recipes'
 
 class EditRecipe extends Component {
   handleSubmit = (state) => {
-    //do the thing with dispatch
+    this.props.updateLocalRecipe(state)
+    this.props.updateRecipe()
   }
   render() {
     return (
       <div className="skeleton">
         <h1>Edit {this.props.recipe.name}</h1>
-        <RecipeForm recipe={this.props.recipe} />
+        <RecipeForm
+          recipe={this.props.recipe}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     )
   }
@@ -23,7 +28,12 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    updateLocalRecipe: (recipe) => {
+      dispatch({ type: 'CREATE_HOLDER_RECIPE', recipe })
+    },
+    updateRecipe: () => dispatch(updateRecipe()),
+  }
 }
 
-export default connect(mapStateToProps)(EditRecipe)
+export default connect(mapStateToProps, mapDispatchToProps)(EditRecipe)
