@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    user = current_user
     user.recipes << @recipe
     if user.save
       render json: @recipe, status: :created
@@ -43,7 +44,6 @@ class RecipesController < ApplicationController
 
   def recipe_belongs_to_user?
     @recipe = Recipe.find_by(id: params[:recipe][:id])
-    #byebug
     @recipe && @recipe.user == current_user
   end
 
