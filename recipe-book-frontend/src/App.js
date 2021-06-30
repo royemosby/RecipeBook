@@ -13,12 +13,11 @@ import ShowRecipe from './recipes/ShowRecipe'
 import NewRecipe from './recipes/NewRecipe'
 import EditRecipe from './recipes/EditRecipe'
 import NoMatch from './common/NoMatch'
-import history from './history'
 
 function App() {
   return (
     <div id="appWrapper">
-      <Router history={history}>
+      <Router>
         <div>
           <Header />
           <Switch>
