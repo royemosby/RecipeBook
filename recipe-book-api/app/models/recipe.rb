@@ -3,6 +3,6 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :serves, numericality: {greater_than: 0}
+  validates :servings, numericality: {greater_than: 0}
   
 end
