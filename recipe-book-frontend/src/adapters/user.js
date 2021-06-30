@@ -1,6 +1,5 @@
 import { url } from './adapterConfig'
 import { store } from '../index'
-import { batch } from 'react-redux'
 
 const createUser = () => {
   const user = store.getState().user
