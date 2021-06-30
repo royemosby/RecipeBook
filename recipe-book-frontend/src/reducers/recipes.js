@@ -7,16 +7,24 @@ function recipes(state = [], action) {
     case 'CREATE_RECIPE':
       return [...state, action.response]
     case 'UPDATE_RECIPE':
-      console.log('UPDATE_RECIPE')
-      console.dir(action.response)
-      console.dir(state)
-      const target = state.findIndex((r) => {
+      const updateTarget = state.findIndex((r) => {
         return r.id === action.response.id
       })
-      if (target >= 0) {
-        const prefix = state.slice(0, target)
-        const suffix = state.slice(target + 1)
+      if (updateTarget >= 0) {
+        const prefix = state.slice(0, updateTarget)
+        const suffix = state.slice(updateTarget + 1)
         return [...prefix, action.response, ...suffix]
+      } else {
+        return state
+      }
+    case 'DELETE_RECIPE':
+      const deleteTarget = state.findIndex((r) => {
+        return r.id === action.recipe.id
+      })
+      if (deleteTarget >= 0) {
+        const prefix = state.slice(0, deleteTarget)
+        const suffix = state.slice(deleteTarget + 1)
+        return [...prefix, ...suffix]
       } else {
         return state
       }
