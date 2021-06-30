@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class RecipeForm extends Component {
   handleSubmit = (evt) => {
@@ -87,9 +87,9 @@ class RecipeForm extends Component {
           </div>
           <div>
             <input type="submit" name="submit" value="submit" />
-            <button onClick={this.props.history.goBack} className="delete">
-              Cancel
-            </button>
+            <Link to="/">
+              <button className="delete">Cancel</button>
+            </Link>
           </div>
         </form>
       </div>
@@ -97,4 +97,4 @@ class RecipeForm extends Component {
   }
 }
 
-export default withRouter(RecipeForm)
+export default RecipeForm
