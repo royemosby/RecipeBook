@@ -19,7 +19,7 @@ class NewUser extends Component {
   render() {
     return (
       <div className="skeleton">
-        <h1>NewUser</h1>
+        <h1>Register for RecipeBook</h1>
         <UserForm submit={this.submit} cancel={this.props.cancel} />
         {this.redirectWhenLoggedIn(this.props)}
       </div>

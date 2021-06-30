@@ -12,7 +12,7 @@ class IndexRecipes extends Component {
   render() {
     return (
       <div className="skeleton">
-        <h1>IndexRecipes</h1>
+        <h1>All Recipes</h1>
         {this.renderRecipeCards()}
       </div>
     )

@@ -7,9 +7,18 @@ class MainContainer extends Component {
   render() {
     return (
       <div className="skeleton">
-        <h1>MainContainer</h1>
+        <h1 className="title ">RecipeBook</h1>
         {this.props.isAuthModalOpen ? <AuthModal /> : <></>}
-        {this.props.isLoggedIn ? <IndexRecipes /> : <></>}
+        {this.props.isLoggedIn ? (
+          <IndexRecipes />
+        ) : (
+          <div className="prez">
+            <h2>To get started</h2>
+            <p>choose "Register"</p>
+            <p>or "Login"</p>
+            <p>with username: roymosby, password: password</p>
+          </div>
+        )}
       </div>
     )
   }

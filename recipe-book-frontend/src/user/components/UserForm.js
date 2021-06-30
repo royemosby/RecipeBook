@@ -30,7 +30,7 @@ class UserForm extends Component {
   render() {
     return (
       <div className="prez">
-        <h1>UserForm</h1>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="username">Username: </label>
@@ -59,12 +59,14 @@ class UserForm extends Component {
               onChange={this.handleChange}
             />
           </div>
+          <br />
           <div>
             <input type="submit" value="Register with RecipeBook" />
             <button type="button" onClick={this.handleCancel}>
               Cancel
             </button>
           </div>
+          <br />
         </form>
       </div>
     )
