@@ -1,24 +1,18 @@
 import { url } from './adapterConfig'
 import { store } from '../index'
 
-const token = store.getState().user.token
-
-//trailing comma
-//prettier-ignore
-const headers = {
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-  Authenticate: `Bearer ${token}`
-}
-
-const body = {}
-
-//we're going to ignore the need for the body payload for now
 const createRecipe = () => {
-  config = {
+  const token = store.getState().user.token
+  const recipe = store.getState().ui.targetRecipe
+
+  const config = {
     method: 'POST',
-    headers: headers,
-    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authenticate: `Bearer ${token}`,
+    },
+    body: JSON.stringify(recipe),
   }
   return (dispatch) => {
     dispatch('SEND_CREATE_RECIPE')
@@ -46,14 +40,20 @@ const createRecipe = () => {
 }
 
 const updateRecipe = () => {
-  config = {
+  const token = store.getState().user.token
+  const recipe = store.getState().ui.targetRecipe
+  const config = {
     method: 'PATCH',
-    headers: headers,
-    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(recipe),
   }
   return (dispatch) => {
-    dispatch('SEND_UPDATE_RECIPE')
-    fetch(`${url.recipes}`, config)
+    dispatch({ type: 'SEND_UPDATE_RECIPE' })
+    fetch(`${url.recipes}/recipe.id`, config)
       .then((resp) => resp.json())
       .then((response) => {
         if (response.message) {
