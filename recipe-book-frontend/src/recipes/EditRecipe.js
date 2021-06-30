@@ -2,19 +2,50 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import RecipeForm from './components/RecipeForm'
 import { updateRecipe } from '../adapters/recipes'
+import { withRouter } from 'react-router-dom'
 
 class EditRecipe extends Component {
-  handleSubmit = (state) => {
-    this.props.updateLocalRecipe(state)
-    this.props.updateRecipe()
+  state = {
+    name: '',
+    servings: 1,
+    description: '',
+    ingredients: '',
+    instructions: '',
+    id: '',
   }
+
+  componentDidMount() {
+    this.setState({
+      name: this.props.recipe.name,
+      servings: this.props.recipe.servings,
+      description: this.props.recipe.description,
+      ingredients: this.props.recipe.ingredients,
+      instructions: this.props.recipe.instructions,
+      id: this.props.recipe.id,
+    })
+  }
+
+  handleChange = (evt) => {
+    this.setState({
+      [evt.target.name]: evt.target.value,
+    })
+  }
+
+  handleSubmit = (evt) => {
+    evt.preventDefault()
+    this.props.updateLocalRecipe(this.state)
+    this.props.updateRecipe()
+    this.props.history.push('/')
+  }
+
   render() {
     return (
       <div className="skeleton">
         <h1>Edit {this.props.recipe.name}</h1>
         <RecipeForm
-          recipe={this.props.recipe}
+          recipeInfo={this.state}
           handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
         />
       </div>
     )
@@ -36,4 +67,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditRecipe)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EditRecipe))
