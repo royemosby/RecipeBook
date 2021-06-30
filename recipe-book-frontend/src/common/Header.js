@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Header = (props) => {
-  console.dir(props)
   return (
     <div className="prez">
       <nav>
@@ -86,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  return { isLoggedIn: state.user.isLoggedIn }
+  return { isLoggedIn: state.ui.isLoggedIn }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

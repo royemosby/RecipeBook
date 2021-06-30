@@ -17,8 +17,8 @@ class MainContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthModalOpen: state.user.isAuthModalOpen,
-    isLoggedIn: state.user.isLoggedIn,
+    isAuthModalOpen: state.ui.isAuthModalOpen,
+    isLoggedIn: state.ui.isLoggedIn,
   }
 }
 

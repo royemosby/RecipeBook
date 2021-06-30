@@ -5,9 +5,6 @@ const initialState = {
   email: '',
   token: '',
   message: '',
-  isAuthModalOpen: false,
-  isLoggedIn: false,
-  requesting: false,
 }
 
 function user(state = initialState, action) {
@@ -19,21 +16,10 @@ function user(state = initialState, action) {
         password: action.credentials.password,
         email: action.credentials.email,
       }
-    case 'OPEN_LOGIN_MODAL':
-      return {
-        ...state,
-        isAuthModalOpen: true,
-      }
-    case 'CLOSE_LOGIN_MODAL':
-      return {
-        ...state,
-        isAuthModalOpen: false,
-      }
     case 'SEND_CREATE_USER':
     case 'SEND_CREDENTIALS':
       return {
         ...state,
-        requesting: true,
         password: '',
       }
     case 'NEW_USER_ERROR':
@@ -41,7 +27,6 @@ function user(state = initialState, action) {
       return {
         ...state,
         password: '',
-        requesting: false,
       }
     case 'ADD_USER':
     case 'LOGIN_USER':
@@ -61,30 +46,6 @@ function user(state = initialState, action) {
     case 'CANCEL_AUTH':
       return {
         ...initialState,
-      }
-    case 'SEND_CREATE_RECIPE':
-    case 'SEND_UPDATE_RECIPE':
-      return {
-        ...state,
-        requesting: true,
-      }
-    case 'CREATE_RECIPE':
-    case 'UPDATE_RECIPE':
-      return {
-        ...state,
-        requesting: false,
-      }
-    case 'CREATE_RECIPE_ERROR':
-    case 'UPDATE_RECIPE_ERROR':
-      return {
-        ...state,
-        message: action.response.message,
-        requesting: false,
-      }
-    case 'DISMISS_ERROR':
-      return {
-        ...state,
-        message: '',
       }
     default:
       return state
