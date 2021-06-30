@@ -2,7 +2,7 @@ import React from 'react'
 
 const AuthModal = (props) => {
   return (
-    <div class="prez">
+    <div className="prez">
       <h1>Login to RecipeBook</h1>
       <form onSubmit={props.handleSubmit}>
         <div>
