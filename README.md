@@ -9,7 +9,7 @@
 
 RecipeBook is an SPA (single page application) to create and save recipes. It consists of an interface build in React with Redux and Router. To persist the recipes, it uses Ruby on Rail and PostgreSQL as an API. While it does have a username/password logon it currently only runs on a host machine.
 
-Installation and operation READMEs are found in the [front-end](/recipe-book-api/README.md) and [api directories](/recipe-book-frontend/README.md).
+Installation and operation READMEs are found in the [front-end](/recipe-book-frontend/README.md) and [api directories](/recipe-book-api/README.md).
 
 ## Features
 
