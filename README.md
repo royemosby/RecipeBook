@@ -29,6 +29,6 @@ Bottom line: I will be a kind human. Please be the same in return.
 Please submit a contribution idea through an issue ticket before working on a pull request. Don't submit a pull request unless it has been discussed through an
 issue ticket. I happily respond to all constructive inquiries.
 
-I will update this readme and how contributions are accepted as this project evolves.
+As this project evlolves, I will update this readme and how contributions are accepted.
 
 ## This project uses the [standard MIT license](LICENSE)
