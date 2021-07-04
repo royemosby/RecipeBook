@@ -10,6 +10,7 @@ const RecipeForm = (props) => {
           <input
             type="text"
             name="name"
+            required="required"
             value={props.recipeInfo.name}
             onChange={props.handleChange}
           />
@@ -19,6 +20,7 @@ const RecipeForm = (props) => {
           <input
             type="number"
             name="servings"
+            required="required"
             min="1"
             value={props.recipeInfo.servings}
             onChange={props.handleChange}
@@ -29,6 +31,7 @@ const RecipeForm = (props) => {
           <input
             type="text"
             name="description"
+            required="required"
             value={props.recipeInfo.description}
             onChange={props.handleChange}
           />
@@ -39,6 +42,7 @@ const RecipeForm = (props) => {
             rows="10"
             cols="40"
             name="ingredients"
+            required="required"
             value={props.recipeInfo.ingredients}
             onChange={props.handleChange}
           />

@@ -10,6 +10,7 @@ const AuthForm = (props) => {
           <input
             type="text"
             name="username"
+            required="required"
             value={props.userInfo.username}
             onChange={props.handleChange}
           />
@@ -19,6 +20,7 @@ const AuthForm = (props) => {
           <input
             type="password"
             name="password"
+            required="required"
             value={props.userInfo.password}
             onChange={props.handleChange}
           />

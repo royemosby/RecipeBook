@@ -37,6 +37,7 @@ class UserForm extends Component {
             <input
               type="text"
               name="username"
+              required="required"
               value={this.state.username}
               onChange={this.handleChange}
             />
@@ -55,6 +56,7 @@ class UserForm extends Component {
             <input
               type="password"
               name="password"
+              required="required"
               value={this.password}
               onChange={this.handleChange}
             />
