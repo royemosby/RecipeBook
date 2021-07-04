@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     if user.save
       render json: @recipe, status: :created
     else
-      render json: {message: "something went wrong"}
+      render json: {message: @recipe.errors}
     end
   end
 
