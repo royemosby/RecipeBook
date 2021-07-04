@@ -1,5 +1,5 @@
 const initialState = {
-  isAuthModalOpen: false,
+  isAuthFormOpen: false,
   requesting: false,
   targetRecipe: {},
   message: '',
@@ -8,15 +8,15 @@ const initialState = {
 
 function ui(state = initialState, action) {
   switch (action.type) {
-    case 'OPEN_LOGIN_MODAL':
+    case 'OPEN_LOGIN_FORM':
       return {
         ...state,
-        isAuthModalOpen: true,
+        isAuthFormOpen: true,
       }
-    case 'CLOSE_LOGIN_MODAL':
+    case 'CLOSE_LOGIN_FORM':
       return {
         ...state,
-        isAuthModalOpen: false,
+        isAuthFormOpen: false,
       }
     case 'SEND_CREATE_USER':
     case 'SEND_CREDENTIALS':
@@ -36,7 +36,7 @@ function ui(state = initialState, action) {
         ...state,
         requesting: false,
         isLoggedIn: true,
-        isAuthModalOpen: false,
+        isAuthFormOpen: false,
       }
     case 'LOG_OUT':
     case 'CANCEL_AUTH':

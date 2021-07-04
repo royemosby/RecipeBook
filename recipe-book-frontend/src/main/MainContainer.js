@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AuthModal from './AuthModal'
+import AuthForm from './AuthForm'
 import IndexRecipes from '../recipes/IndexRecipes'
 import { connect } from 'react-redux'
 import { authenticate } from '../adapters/user'
@@ -27,8 +27,8 @@ class MainContainer extends Component {
     return (
       <div className="skeleton">
         <h1 className="title ">RecipeBook</h1>
-        {this.props.isAuthModalOpen ? (
-          <AuthModal
+        {this.props.isAuthFormOpen ? (
+          <AuthForm
             handleSubmit={this.handleSubmit}
             userInfo={this.state}
             handleChange={this.handleChange}
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthModalOpen: state.ui.isAuthModalOpen,
+    isAuthFormOpen: state.ui.isAuthFormOpen,
     isLoggedIn: state.ui.isLoggedIn,
   }
 }

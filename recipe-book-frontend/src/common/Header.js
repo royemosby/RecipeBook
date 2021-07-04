@@ -10,14 +10,14 @@ const Header = (props) => {
           to="/"
           className="linky"
           exact
-          onClick={props.closeLoginModal}
+          onClick={props.closeLoginForm}
           activeStyle={{ background: 'lightblue' }}>
           Main
         </NavLink>
-        {props.isLoggedIn ? showNewRecipe(props) : <></>}
-        {props.isLoggedIn ? showProfile(props) : <></>}
-        {!props.isLoggedIn ? showAuthNewUser(props) : <></>}
-        {props.isLoggedIn ? showLogOut(props) : <></>}
+        {props.isLoggedIn ? showNewRecipe(props) : null}
+        {props.isLoggedIn ? showProfile(props) : null}
+        {!props.isLoggedIn ? showAuthNewUser(props) : null}
+        {props.isLoggedIn ? showLogOut(props) : null}
       </nav>
     </div>
   )
@@ -50,7 +50,7 @@ const showProfile = (props) => {
 const showAuthNewUser = (props) => {
   return (
     <>
-      <NavLink to="/" className="linky" exact onClick={props.openLoginModal}>
+      <NavLink to="/" className="linky" exact onClick={props.openLoginForm}>
         Login
       </NavLink>
       <NavLink
@@ -78,8 +78,8 @@ const showLogOut = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openLoginModal: () => dispatch({ type: 'OPEN_LOGIN_MODAL' }),
-    closeLoginModal: () => dispatch({ type: 'CLOSE_LOGIN_MODAL' }),
+    openLoginForm: () => dispatch({ type: 'OPEN_LOGIN_FORM' }),
+    closeLoginForm: () => dispatch({ type: 'CLOSE_LOGIN_FORM' }),
     logout: () => dispatch({ type: 'LOG_OUT' }),
   }
 }

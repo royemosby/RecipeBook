@@ -37,7 +37,7 @@ function user(state = initialState, action) {
         id: action.response.user.id,
         token: action.response.jwt,
         isLoggedIn: true,
-        isAuthModalOpen: false,
+        isAuthFormOpen: false,
       }
     case 'LOG_OUT':
       return {

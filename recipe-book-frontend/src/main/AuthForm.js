@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AuthModal = (props) => {
+const AuthForm = (props) => {
   return (
     <div className="prez">
       <h1>Login to RecipeBook</h1>
@@ -34,4 +34,4 @@ const AuthModal = (props) => {
   )
 }
 
-export default AuthModal
+export default AuthForm
