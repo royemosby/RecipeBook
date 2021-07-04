@@ -11,7 +11,7 @@ class IndexRecipes extends Component {
 
   render() {
     return (
-      <div className="skeleton">
+      <div className="prez">
         <h1>All Recipes</h1>
         {this.renderRecipeCards()}
       </div>
