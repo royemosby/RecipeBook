@@ -1,14 +1,18 @@
-import { url, userToken, targetRecipe } from './adapterConfig'
+import { url, userToken, targetRecipe, processMessage } from './adapterConfig'
 import { batch } from 'react-redux'
+
+function recipeHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${userToken()}`,
+  }
+}
 
 const createRecipe = () => {
   const config = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${userToken()}`,
-    },
+    headers: recipeHeaders(),
     body: JSON.stringify(targetRecipe()),
   }
   return (dispatch) => {
@@ -17,18 +21,7 @@ const createRecipe = () => {
       .then((resp) => resp.json())
       .then((response) => {
         if (response.message) {
-          let message = ''
-          if (typeof response.message === 'string') {
-            message = response.message
-          } else {
-            for (const field in response.message) {
-              message = message.concat(
-                // ugly join
-                // prettier-ignore
-                `${field.toUpperCase()}: ${response.message[field].join(' | ')}. `
-              )
-            }
-          }
+          let message = processMessage(response.message)
           dispatch({ type: 'CREATE_RECIPE_ERROR', message })
         } else {
           dispatch({ type: 'CREATE_RECIPE', response })
@@ -40,11 +33,7 @@ const createRecipe = () => {
 const updateRecipe = () => {
   const config = {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${userToken()}`,
-    },
+    headers: recipeHeaders(),
     body: JSON.stringify(targetRecipe()),
   }
   return (dispatch) => {
@@ -53,17 +42,7 @@ const updateRecipe = () => {
       .then((resp) => resp.json())
       .then((response) => {
         if (response.message) {
-          let message = ''
-          if (typeof response.message === 'string') {
-            message = response.message
-          } else {
-            for (const field in response.message) {
-              message = message.concat(
-                // prettier-ignore
-                `${field.toUpperCase()}: ${response.message[field].join(' | ')}. `
-              )
-            }
-          }
+          let message = processMessage(response.message)
           dispatch({ type: 'UPDATE_RECIPE_ERROR', message })
         } else {
           dispatch({ type: 'UPDATE_RECIPE', response })
@@ -75,11 +54,7 @@ const updateRecipe = () => {
 const deleteRecipe = () => {
   const config = {
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${userToken()}`,
-    },
+    headers: recipeHeaders(),
     body: JSON.stringify(targetRecipe()),
   }
   return (dispatch) => {
@@ -87,17 +62,7 @@ const deleteRecipe = () => {
     fetch(`${url.recipes}/${targetRecipe().id}`, config)
       .then((resp) => resp.json())
       .then((response) => {
-        let message = ''
-        if (typeof response.message === 'string') {
-          message = response.message
-        } else {
-          for (const field in response.message) {
-            message = message.concat(
-              // prettier-ignore
-              `${field.toUpperCase()}: ${response.message[field].join(' | ')}. `
-            )
-          }
-        }
+        let message = processMessage(response.message)
         const recipe = targetRecipe()
         batch(() => {
           dispatch({ type: 'RECIPE_DELETED', message })
