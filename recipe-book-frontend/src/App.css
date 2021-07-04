@@ -4,6 +4,22 @@
 
 html {
   box-sizing: border-box;
+
+}
+
+body {
+  font-family: Montserrat,
+    Arial,
+    Helvetica,
+    sans-serif
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
 }
 
 *,
@@ -12,14 +28,23 @@ html {
   box-sizing: inherit;
 }
 
+.hero {
+  max-height: 147px;
+
+}
+
+.hero img {
+  max-height: 150px;
+}
+
 #appWrapper {
-  border: 10px solid rgb(95, 0, 95);
-  height: 100vh;
+  border: 10px solid rgb(190, 140, 190);
+  height: calc(100vh - 147px);
   max-height: 100vh;
   overflow-y: auto;
   display: grid;
   grid-template-rows: max-content auto max-content;
-  padding: 5px;
+
 }
 
 .title {
@@ -28,21 +53,21 @@ html {
 }
 
 .skeleton {
-  border: 3px solid black;
+  border: 6px solid rgb(135, 191, 255);
+  border-radius: 10px;
   padding: 10px;
   margin: 5px;
   text-align: center;
 }
 
 .prez {
-  border: 1px solid gray;
   border-radius: 5px;
   width: 75vw;
   margin: auto;
 }
 
 .linky {
-  border: 1px solid blue;
+  border: 3px solid rgb(135, 191, 255);
   border-radius: 5px;
   padding: 5px;
   margin: 5px;

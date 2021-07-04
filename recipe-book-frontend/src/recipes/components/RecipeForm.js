@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 
 const RecipeForm = (props) => {
   return (
-    <div className="skeleton">
-      <h1>RecipeForm</h1>
+    <div className="prez">
       <form onSubmit={props.handleSubmit}>
         <div>
           <label htmlFor="name">Recipe name: </label>

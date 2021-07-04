@@ -26,7 +26,6 @@ class MainContainer extends Component {
   render() {
     return (
       <div className="skeleton">
-        <h1 className="title ">RecipeBook</h1>
         {this.props.isAuthFormOpen ? (
           <AuthForm
             handleSubmit={this.handleSubmit}
@@ -43,8 +42,8 @@ class MainContainer extends Component {
           <div className="prez">
             <h2>To get started</h2>
             <p>choose "Register"</p>
-            <p>or "Login"</p>
-            <p>with username: roymosby, password: password</p>
+            <p>or "Login" for a demo with</p>
+            <p>username: roymosby, password: password</p>
           </div>
         )}
       </div>
