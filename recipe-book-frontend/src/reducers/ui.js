@@ -44,7 +44,6 @@ function ui(state = initialState, action) {
         ...initialState,
       }
     case 'CREATE_HOLDER_RECIPE':
-      console.dir(action.recipe)
       return {
         ...state,
         targetRecipe: { ...action.recipe },
@@ -72,7 +71,7 @@ function ui(state = initialState, action) {
     case 'UPDATE_RECIPE_ERROR':
       return {
         ...state,
-        message: action.response.message,
+        message: action.message,
         requesting: false,
       }
 
