@@ -1,19 +1,15 @@
-import { url } from './adapterConfig'
-import { store } from '../index'
+import { url, userToken, targetRecipe } from './adapterConfig'
 import { batch } from 'react-redux'
 
 const createRecipe = () => {
-  const token = store.getState().user.token
-  const recipe = store.getState().ui.targetRecipe
-
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${userToken()}`,
     },
-    body: JSON.stringify(recipe),
+    body: JSON.stringify(targetRecipe()),
   }
   return (dispatch) => {
     dispatch({ type: 'SEND_CREATE_RECIPE' })
@@ -42,20 +38,18 @@ const createRecipe = () => {
 }
 
 const updateRecipe = () => {
-  const token = store.getState().user.token
-  const recipe = store.getState().ui.targetRecipe
   const config = {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${userToken()}`,
     },
-    body: JSON.stringify(recipe),
+    body: JSON.stringify(targetRecipe()),
   }
   return (dispatch) => {
     dispatch({ type: 'SEND_UPDATE_RECIPE' })
-    fetch(`${url.recipes}/recipe.id`, config)
+    fetch(`${url.recipes}/${targetRecipe().id}`, config)
       .then((resp) => resp.json())
       .then((response) => {
         if (response.message) {
@@ -79,20 +73,18 @@ const updateRecipe = () => {
 }
 
 const deleteRecipe = () => {
-  const token = store.getState().user.token
-  const recipe = store.getState().ui.targetRecipe
   const config = {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${userToken()}`,
     },
-    body: JSON.stringify(recipe),
+    body: JSON.stringify(targetRecipe()),
   }
   return (dispatch) => {
     dispatch({ type: 'SEND_DELETE_RECIPE' })
-    fetch(`${url.recipes}/${recipe.id}`, config)
+    fetch(`${url.recipes}/${targetRecipe().id}`, config)
       .then((resp) => resp.json())
       .then((response) => {
         let message = ''
@@ -106,6 +98,7 @@ const deleteRecipe = () => {
             )
           }
         }
+        const recipe = targetRecipe()
         batch(() => {
           dispatch({ type: 'RECIPE_DELETED', message })
           dispatch({ type: 'DELETE_RECIPE', recipe })

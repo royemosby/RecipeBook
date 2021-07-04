@@ -1,8 +1,6 @@
-import { url } from './adapterConfig'
-import { store } from '../index'
+import { url, processMessage, user } from './adapterConfig'
 
 const createUser = () => {
-  const user = store.getState().user
   const config = {
     method: 'POST',
     headers: {
@@ -10,9 +8,9 @@ const createUser = () => {
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      username: user.username,
-      password: user.password,
-      email: user.email,
+      username: user().username,
+      password: user().password,
+      email: user().email,
     }),
   }
   return (dispatch) => {
@@ -21,17 +19,7 @@ const createUser = () => {
       .then((resp) => resp.json())
       .then((response) => {
         if (response.message) {
-          let message = ''
-          if (typeof response.message === 'string') {
-            message = response.message
-          } else {
-            for (const field in response.message) {
-              message = message.concat(
-                // prettier-ignore
-                `${field.toUpperCase()}: ${response.message[field].join(' | ')}. `
-              )
-            }
-          }
+          const message = processMessage(response.message)
           dispatch({ type: 'NEW_USER_ERROR', message })
         } else {
           dispatch({ type: 'ADD_USER', response })
@@ -41,7 +29,6 @@ const createUser = () => {
 }
 
 const authenticate = () => {
-  const user = store.getState().user
   const config = {
     method: 'POST',
     headers: {
@@ -49,9 +36,9 @@ const authenticate = () => {
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      username: user.username,
-      password: user.password,
-      email: user.email,
+      username: user().username,
+      password: user().password,
+      email: user().email,
     }),
   }
   return (dispatch) => {
@@ -60,17 +47,7 @@ const authenticate = () => {
       .then((resp) => resp.json())
       .then((response) => {
         if (response.message) {
-          let message = ''
-          if (typeof response.message === 'string') {
-            message = response.message
-          } else {
-            for (const field in response.message) {
-              message = message.concat(
-                // prettier-ignore
-                `${field.toUpperCase()}: ${response.message[field].join(' | ')}. `
-              )
-            }
-          }
+          const message = processMessage(response.message)
           dispatch({ type: 'AUTH_ERROR', message })
         } else {
           const recipes = response.user.recipes
