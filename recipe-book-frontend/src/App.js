@@ -15,6 +15,7 @@ import NewRecipe from './recipes/NewRecipe'
 import EditRecipe from './recipes/EditRecipe'
 import NoMatch from './common/NoMatch'
 import Toast from './common/Toast'
+import RouteOrRedirect from './common/RouteOrRedirect'
 
 function App(props) {
   return (
@@ -36,7 +37,7 @@ function App(props) {
               path="/recipes/:recipeId/edit"
               component={EditRecipe}
             />
-            <Route path="/recipes/:recipeId" component={ShowRecipe} />
+            <RouteOrRedirect path="/recipes/:recipeId" component={ShowRecipe} />
             <Route path="*">
               <NoMatch />
             </Route>

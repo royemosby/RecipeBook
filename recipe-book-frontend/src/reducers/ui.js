@@ -78,7 +78,12 @@ function ui(state = initialState, action) {
         message: action.message,
         requesting: false,
       }
-
+    case 'RECIPE_NOT_FOUND':
+      return {
+        ...state,
+        toastIsOpen: true,
+        message: 'Recipe not found.',
+      }
     case 'DISMISS_TOAST':
       return {
         ...state,
