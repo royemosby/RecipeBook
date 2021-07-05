@@ -3,6 +3,7 @@ const initialState = {
   requesting: false,
   targetRecipe: {},
   message: '',
+  toastIsOpen: false,
   isLoggedIn: false,
 }
 
@@ -28,6 +29,8 @@ function ui(state = initialState, action) {
     case 'AUTH_ERROR':
       return {
         ...state,
+        message: action.message,
+        toastIsOpen: true,
         requesting: false,
       }
     case 'ADD_USER':
@@ -71,13 +74,15 @@ function ui(state = initialState, action) {
     case 'UPDATE_RECIPE_ERROR':
       return {
         ...state,
+        toastIsOpen: true,
         message: action.message,
         requesting: false,
       }
 
-    case 'DISMISS_ERROR':
+    case 'DISMISS_TOAST':
       return {
         ...state,
+        toastIsOpen: false,
         message: '',
       }
     default:
