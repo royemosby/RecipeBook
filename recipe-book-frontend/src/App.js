@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Header from './common/Header'
 import MainContainer from './main/MainContainer'
 import ShowUser from './user/ShowUser'
@@ -13,10 +14,12 @@ import ShowRecipe from './recipes/ShowRecipe'
 import NewRecipe from './recipes/NewRecipe'
 import EditRecipe from './recipes/EditRecipe'
 import NoMatch from './common/NoMatch'
+import Toast from './common/Toast'
 
-function App() {
+function App(props) {
   return (
     <div id="appWrapper">
+      {props.toastIsOpen ? <Toast /> : null}
       <Router>
         <div>
           <Header />
@@ -44,4 +47,10 @@ function App() {
   )
 }
 
-export default App
+const mapStateToProps = (props) => {
+  return {
+    toastIsOpen: props.ui.toastIsOpen,
+  }
+}
+
+export default connect(mapStateToProps)(App)
