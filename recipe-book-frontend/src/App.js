@@ -32,8 +32,7 @@ function App(props) {
               <Redirect to="/" />
             </Route>
             <Route exact path="/recipes/new" component={NewRecipe} />
-            <Route
-              exact
+            <RouteOrRedirect
               path="/recipes/:recipeId/edit"
               component={EditRecipe}
             />
